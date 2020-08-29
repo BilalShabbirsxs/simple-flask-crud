@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<!--    <h1>Blogs</h1>-->
+<!--    {% for post in posts %}-->
+<!--    <h2>{{ post.title }}</h2>-->
+<!--    <p>by {{ post.author }} on {{ post.date_posted }}</p>-->
+<!--    <p>{{ post.content }}</p>-->
+
+<!--    {% endfor %}-->
+
+ <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Content</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for post in posts %}
+                <tr>
+
+                    <td><strong>{{ post.title }}</strong></td>
+                    <td>{{ post.author }}</td>
+                    <td>{{ post.content }}</td>
+                    <td>{{ post.date_posted }}</td>
+                    <td>
+                        <a class="btn btn-danger"
+                           href="/delete/{{ post.id }}">
+                            Delete
+                        </a>
+                        <a class="btn btn-info"
+                           href="/update/{{ post.id }}">
+                            Edit
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+        <button class="btn btn-primary" onclick="window.location.href='{{ url_for( 'create' ) }}';">
+            Create Post
+        </button>
+{% endblock content %}

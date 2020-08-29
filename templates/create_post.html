@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+    <form action="/create" method="post">
+        <div class="form-group">
+            <input class="form-control" type="text" name="title" placeholder="Title" value="{{ post.title }}" required>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="author" placeholder="Author" value="{{ post.author }}" required>
+        </div>
+
+        <div class="form-group">
+            <textarea class="form-control" name="content"
+                      placeholder="Add content" required>{{ post.content }}</textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">
+            {% if post %}
+            Update
+            {% endif %}
+            Add
+        </button>
+    </form>
+{% endblock content %}
