@@ -67,11 +67,29 @@ def update(id):
     if not id or id != 0:
         post = Post.query.get(id)
         if post:
-            db.session.delete(post)
-            db.session.commit()
-            return render_template('create_post.html', post=post)
+            return render_template('update_post.html', post=post)
 
     return
+
+
+@app.route('/update_post/<int:id>', methods=['GET', 'POST'])
+def update_post(id):
+    if not id or id != 0:
+        post = Post.query.get(id)
+        if post:
+            db.session.delete(post)
+            db.session.commit()
+    if request.method == 'POST':
+        title = request.form['title']
+        author = request.form['author']
+        content = request.form['content']
+        post = Post(title=title, author=author, content=content)
+
+        db.session.add(post)
+        db.session.commit()
+        flash("post is created")
+        return redirect('/')
+    return render_template('create_post.html', post=None)
 
 
 @app.route('/delete/<int:id>')

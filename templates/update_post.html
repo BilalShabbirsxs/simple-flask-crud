@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-    <form action="/create" method="post">
+    <form action="/update_post/{{ post.id }}" method="post">
         <div class="form-group">
             <input class="form-control" type="text" name="title" placeholder="Title" value="{{ post.title }}" required>
         </div>
@@ -13,7 +13,7 @@
                       placeholder="Add content" required>{{ post.content }}</textarea>
         </div>
         <button class="btn btn-primary" type="submit">
-            Add Post
+            Update
         </button>
     </form>
 {% endblock content %}
